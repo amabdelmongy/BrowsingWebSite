@@ -1,0 +1,125 @@
+<div class="main-content">
+  <div class="container-fluid"  >
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="orange">
+            <i class="material-icons">content_copy</i>
+          </div>
+          <div class="card-content">
+            <p class="category"> </p>
+            <h3 class="title"> </h3>
+          </div>
+         
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="green">
+            <i class="material-icons">create</i>
+          </div>
+          <div class="card-content">
+            <p class="category">  </p>
+            <h3 class="title"> </h3>
+          </div>
+           
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="red">
+            <i class="material-icons">done</i>
+          </div>
+          <div class="card-content">
+            <p class="category"> </p>
+            <h3 class="title"> </h3>
+          </div>
+           
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="blue">
+            <i class="material-icons">close</i>
+          </div>
+          <div class="card-content">
+            <p class="category"> </p>
+            <h3 class="title"> </h3>
+          </div>
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="row dashboard">
+      <div class="col-lg-12 col-md-12">
+        <div class="card card-nav-tabs">
+          <div class="card-header" data-background-color="purple">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <span class="nav-tabs-title">Products:</span>
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="active" (click)="getProducts('Bug')">
+                    <a href="#Bug" data-toggle="tab">
+                      <i class="material-icons">bug_report</i>
+                        Report   
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="" (click)="getProducts('Feature')">
+                    <a href="#Feature" data-toggle="tab">
+                      <i class="material-icons">code</i>
+                        Request  
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="" (click)="getProducts('Other')">
+                    <a href="#Other" data-toggle="tab">
+                      <i class="material-icons">cloud</i>
+                      Other  
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="tab-content">
+              <p-dataList [value]="allProducts" [paginator]="true" [totalRecords]="50"
+                          [rows]="5" [pageLinks]="3" [rowsPerPageOptions]="[5,10,50]"
+                          rowHover="true" selectionMode="single">
+                <ng-template let-product pTemplate="item">
+
+                  <div class="padding-15 ui-widget-content">
+                    <div>
+                      <div>
+                        <h3 class="title">
+                          <strong class="main-subject">{{product.name}} </strong>
+
+                          <small class="titleBackground blue"> {{product.name}} Urgency</small>
+                          <small class="titleBackground red"> {{product.name }} </small>
+                        </h3>
+                        <p class="category"><strong> {{product.name }} </strong> {{ product.name}} </p>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="row">
+                        <div class="col-md-9">
+                          <p>  {{product.description}}</p>
+                        </div>
+                    
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-dataList>
+       
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> 
