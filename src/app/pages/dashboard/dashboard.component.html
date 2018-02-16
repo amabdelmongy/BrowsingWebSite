@@ -1,125 +1,146 @@
 <div class="main-content">
-  <div class="container-fluid"  >
+  <div class="container-fluid">
     <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="orange">
+            <i class="material-icons">search</i>
+          </div>
+          <div class="card-content">
+            <div class="form-group form-black label-floating is-empty title">
+              <input type="text" class="form-control" [(ngModel)]="search" (keyup)="onSearch()" />
+
+
+              <p class="category"> </p>
+              <h3>Search </h3>
+            </div>
+
+          </div>
+        </div>
+      </div>
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-header" data-background-color="orange">
             <i class="material-icons">content_copy</i>
           </div>
-          <div class="card-content">
+          <div class="card-content" *ngIf="!search">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+                {{order}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                  <a (click)="order='name';onLazyLoad(null)">name</a>
+                </li>
+                <li>
+                  <a (click)="order='abv';onLazyLoad(null)">abv</a>
+                </li>
+                <li>
+                  <a (click)="order='ibu';onLazyLoad(null)">ibu</a>
+                </li>
+                <li>
+                  <a (click)="order='isOrganic';onLazyLoad(null)">is Organic</a>
+                </li>
+              </ul>
+            </div>
             <p class="category"> </p>
-            <h3 class="title"> </h3>
+            <h3 class="title">Order By </h3>
           </div>
-         
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <div class="card-header" data-background-color="green">
-            <i class="material-icons">create</i>
+          <div class="card-header" data-background-color="orange">
+            <i class="material-icons">content_copy</i>
           </div>
-          <div class="card-content">
-            <p class="category">  </p>
-            <h3 class="title"> </h3>
-          </div>
-           
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-header" data-background-color="red">
-            <i class="material-icons">done</i>
-          </div>
-          <div class="card-content">
+          <div class="card-content" *ngIf="!search" >
+            <div class="dropdown" >
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+                {{orderDirecation}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                  <a (click)="orderDirecation ='ASC' ; onLazyLoad(null)">ASC</a>
+                </li>
+                <li>
+                  <a (click)="orderDirecation ='DESC' ;onLazyLoad(null)">DESC</a>
+                </li>
+              </ul>
+            </div>
             <p class="category"> </p>
-            <h3 class="title"> </h3>
+            <h3 class="title">Order Direcation </h3>
           </div>
-           
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-header" data-background-color="blue">
-            <i class="material-icons">close</i>
-          </div>
-          <div class="card-content">
-            <p class="category"> </p>
-            <h3 class="title"> </h3>
-          </div>
-           
-        </div>
-      </div>
-    </div>
 
-    <div class="row dashboard">
-      <div class="col-lg-12 col-md-12">
-        <div class="card card-nav-tabs">
-          <div class="card-header" data-background-color="purple">
-            <div class="nav-tabs-navigation">
-              <div class="nav-tabs-wrapper">
-                <span class="nav-tabs-title">Products:</span>
-                <ul class="nav nav-tabs" data-tabs="tabs">
-                  <li class="active" (click)="getProducts('Bug')">
-                    <a href="#Bug" data-toggle="tab">
-                      <i class="material-icons">bug_report</i>
-                        Report   
-                      <div class="ripple-container"></div>
-                    </a>
-                  </li>
-                  <li class="" (click)="getProducts('Feature')">
-                    <a href="#Feature" data-toggle="tab">
-                      <i class="material-icons">code</i>
-                        Request  
-                      <div class="ripple-container"></div>
-                    </a>
-                  </li>
-                  <li class="" (click)="getProducts('Other')">
-                    <a href="#Other" data-toggle="tab">
-                      <i class="material-icons">cloud</i>
-                      Other  
-                      <div class="ripple-container"></div>
-                    </a>
-                  </li>
-                </ul>
+
+      <div class="row dashboard">
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+
+            <div class="card-content">
+
+              <div class="tab-content" *ngIf="searchObject && searchObject.data">
+                <span> {{searchObject.totalResults }} </span>
+                <p-dataList [value]="searchObject.data" [paginator]="true" [lazy]="true" [totalRecords]="searchObject.totalResults" [rows]="50"
+                  [pageLinks]="3" [rowsPerPageOptions]="[5,10,50]" rowHover="true" selectionMode="single" (onPage)="onLoad($event)">
+                  <ng-template let-product pTemplate="item">
+                    <div class="padding-15 ui-widget-content ">
+                      <div>
+                        <div>
+                          <span class="titleBackground blue" *ngIf="product.isOrganic == 'Y'" title="isOrganic">
+                            <i class="material-icons">done</i>
+                          </span>
+                          <h3 class="title">
+                            <strong class="main-subject">{{product.name}} </strong>
+                            <small class="titleBackground blue" *ngIf="product.abv" title="The alcohol by volume of the beer (expressed as a percentage).">
+                              abv {{product.abv}} %
+                            </small>
+                            <small class="titleBackground blue" *ngIf="product.ibu" title="The IBU (international bittering unit) value is a measure of how bitter a beer is. The higher the number, the more bitter the beer.">
+                              ibu {{product.ibu}}
+                            </small>
+
+
+                            <small class="titleBackground blue" *ngIf="product.available && product.available.description">
+                              {{product.available.description}} </small>
+
+                          </h3>
+                          <p class="category" *ngIf="product.glass && product.glass.name">
+                            <strong>Glass {{product.glass.name }} </strong>
+                            {{ product.servingTemperatureDisplay }} </p>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="row">
+                          <div class="col-md-9">
+                            <p> {{product.description}}</p>
+                            <p class="category" *ngIf="product.foodPairings">
+                              Food Pairings {{product.foodPairings }} </p>
+                            <p class="category" *ngIf="!product.foodPairings">
+                              Beer Has No Food Pairings Available. </p>
+                          </div>
+                          <div class="col-md-3" *ngIf="product.breweries&& product.breweries.length > 0
+                           && product.breweries[0].images && product.breweries[0].images.medium">
+                            <img [src]="product.breweries[0].images.medium" [title]="product.breweries[0].name" class="rcorners3" style='width:100%;'
+                              border="0" alt="Null">
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </p-dataList>
+
               </div>
             </div>
           </div>
-          <div class="card-content">
-            <div class="tab-content">
-              <p-dataList [value]="allProducts" [paginator]="true" [totalRecords]="50"
-                          [rows]="5" [pageLinks]="3" [rowsPerPageOptions]="[5,10,50]"
-                          rowHover="true" selectionMode="single">
-                <ng-template let-product pTemplate="item">
-
-                  <div class="padding-15 ui-widget-content">
-                    <div>
-                      <div>
-                        <h3 class="title">
-                          <strong class="main-subject">{{product.name}} </strong>
-
-                          <small class="titleBackground blue"> {{product.name}} Urgency</small>
-                          <small class="titleBackground red"> {{product.name }} </small>
-                        </h3>
-                        <p class="category"><strong> {{product.name }} </strong> {{ product.name}} </p>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="row">
-                        <div class="col-md-9">
-                          <p>  {{product.description}}</p>
-                        </div>
-                    
-                      </div>
-                    </div>
-                  </div>
-                </ng-template>
-              </p-dataList>
-       
-            </div>
-          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div> 

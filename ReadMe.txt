@@ -39,6 +39,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 7. Build to productaion: ng build –prod –aot
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+### Development server
+In order to avoid encountering a CORS browser error run the application with the command:
+
+ng serve --proxy proxy.config.json
+
+This provides a proxy path to the beer API. More information about that here. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
 
 ### ToDo 
 - Notification service add method for every type like Error and Info
