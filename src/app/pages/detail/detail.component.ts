@@ -1,7 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormControlName } from '@angular/forms';
- 
-import { NotificationService } from "../shared/notificationService";  
+  
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'app/pages/apiServices/productService'; 
 import { Product, Data } from 'app/pages/models/product';
@@ -15,8 +14,7 @@ import { Product, Data } from 'app/pages/models/product';
 export class DetailComponent implements OnInit { 
  private product : Product;
  public data:Data;
-  constructor(public formBuilder: FormBuilder, 
-    private notificationService: NotificationService,
+  constructor( 
     private route: ActivatedRoute,
     private router: Router,
     private productService :ProductService) {

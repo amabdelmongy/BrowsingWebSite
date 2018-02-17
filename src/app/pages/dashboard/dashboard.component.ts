@@ -1,63 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import * as Chartist from 'chartist';
+import { Component, OnInit , ViewChild } from '@angular/core'; 
 import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { SortMeta, LazyLoadEvent, FilterMetadata } from 'primeng/primeng';
-import { LocalStorageService } from "angular-2-local-storage";
 import { Router } from '@angular/router';
-import { NotificationService } from "../shared/notificationService";
 import { ProductService } from "../apiServices/productService";
-import { SearchObject } from "../models/searchObject";
+import { SearchObject } from "../models/searchObject"; 
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  searchObject: SearchObject;
-  isloading: boolean = false;
-  order: string;
-  orderDirecation: string;
-  search: string;
+  searchObject: SearchObject; 
+  order: string= "name"; 
+  orderDirecation: string= 'ASC';
+  search: string; 
+  term = new FormControl();
+
   constructor(private productService: ProductService,
-    public localStorageService: LocalStorageService,
-    public router: Router,
-    public notificationService: NotificationService) {
-    // this.searchObject.data[0].breweries[0].images.medium  
+    public router: Router) {
   }
 
   ngOnInit() {
-    this.onLoadTable(null);
-    this.order = "name";
-    this.orderDirecation = 'ASC';
+    this.onLoadTable(null); 
+    this.term.valueChanges.debounceTime(600)
+    .distinctUntilChanged().subscribe(term =>{this.search = term ; this.onLoadTable(1) } );
   }
 
-  private getAll(p, order, orderDirecation) {
-    this.productService.getAll(p, order, orderDirecation).subscribe(t => this.searchObject = t);
-  }
+ 
 
-  onSearch(pageNumber) {
-    if(this.search)
-    {this.productService.search(this.search , pageNumber).subscribe(t => this.searchObject = t);}
-    else{
-      this.onLoadTable(null);
+  get(pageNumber) {
+    if (this.search) {
+      this.productService.search(this.search, pageNumber)
+      .subscribe(searchObject => { 
+        this.searchObject = searchObject
+      } );
+    }
+    else {
+      this.productService.getAll(pageNumber,this.order, this.orderDirecation)
+      .subscribe(searchObject => { 
+        this.searchObject = searchObject
+      });
     }
   }
 
-  onLoadTable(event) {
-    if (this.isloading == true)
-      return; 
+  onLoadTable(event) { 
     //Paging 
     var pageNumber = 0;
     if (event && event.first && event.rows)
-    pageNumber = event.first / event.rows;
-    pageNumber = pageNumber + 1;
-
-    //Excute Query 
-    if (this.search) {
-      this.onSearch(pageNumber);
-    } else {
-      this.getAll(pageNumber, this.order, this.orderDirecation);
-    }
+      pageNumber = event.first / event.rows;
+    pageNumber = pageNumber + 1; 
+      this.get(pageNumber); 
   }
-  
+
 }
