@@ -6,7 +6,7 @@ Coding Challenge
 
 Build a website about beer :) You should be able to search, sort and filter and show detail information.
 
-You’re free in choosing languages and frameworks and how much you want to use from the following API
+You are free in choosing languages and frameworks and how much you want to use from the following API
 
 http://www.brewerydb.com/developers/docs (API key: ee8a1a84bc76fd7d7ae6dd0dc45583e3)
     
@@ -36,7 +36,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 4. Make sure you have installed [Angular CLI](https://github.com/angular/angular-cli) already. If not, please install.
 5. Run in terminal: ```npm install```
 6. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-7. Build to productaion: ng build –prod –aot
+7. Build to productaion: ng build -prod 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ### Development server
@@ -47,6 +47,5 @@ ng serve --proxy proxy.config.json
 This provides a proxy path to the beer API. More information about that here. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
 
-### ToDo 
-- Notification service add method for every type like Error and Info
+### ToDo  
 - move all URLs to webconfig.json file to enable change all urls in production mode

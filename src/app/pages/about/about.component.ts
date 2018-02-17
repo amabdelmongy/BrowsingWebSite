@@ -8,13 +8,13 @@ import { Product, Data } from 'app/pages/models/product';
  
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'app-create-ticket',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
 })
-export class DetailComponent implements OnInit { 
+export class AboutComponent implements OnInit { 
  private product : Product;
- public data:Data;
+ private data:Data;
   constructor(public formBuilder: FormBuilder, 
     private notificationService: NotificationService,
     private route: ActivatedRoute,
@@ -24,22 +24,11 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     //// Read the  Id from the route parameter
-    this.route.params.subscribe(
-      params => {
-        let id =  params['id'];
-        if (id  )
-          this.getProduct(id);
-      }
-    ); 
+    
+   
   }
  
-  private getProduct(id) {
-    this.productService.getById(id).subscribe(t =>{
-      this.product = t
-      if(t && t.data   )
-        this. data = t.data ;  
-     } );
-  }
+  
  
 
 }

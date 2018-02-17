@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { LocalStorageService } from 'angular-2-local-storage';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,8 +14,7 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location, private element: ElementRef,
-      public localStorageService: LocalStorageService, 
+    constructor(location: Location, private element: ElementRef, 
       private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
@@ -38,15 +36,15 @@ export class NavbarComponent implements OnInit {
 
         this.sidebarVisible = true;
     };
+
     sidebarClose() {
         const body = document.getElementsByTagName('body')[0];
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         body.classList.remove('nav-open');
     };
-    sidebarToggle() {
-        // const toggleButton = this.toggleButton;
-        // const body = document.getElementsByTagName('body')[0];
+
+    sidebarToggle() { 
         if (this.sidebarVisible === false) {
             this.sidebarOpen();
         } else {
@@ -65,14 +63,7 @@ export class NavbarComponent implements OnInit {
           if(this.listTitles[item].path === titlee){
               return this.listTitles[item].title;
           }
-      }
-      if (titlee == 'login')
-        return 'Login';
+      } 
       return 'Dashboard';
-    }
-
-  private onClickLogout() { 
-    this.localStorageService.clearAll(); 
-    this.router.navigate(['/login']); 
-  }
+    } 
 }

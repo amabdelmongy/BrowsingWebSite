@@ -18,12 +18,14 @@ import {PagesComponent} from "./pages.component";
 import { CommonModule } from '@angular/common';
  import {ProductService} from "./apiServices/productService";
  import {DetailComponent} from "./detail/detail.component";
+import { AboutComponent } from 'app/pages/about/about.component';
 
  @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
-    DetailComponent 
+    DetailComponent ,
+    AboutComponent 
 
   ],
   imports: [  

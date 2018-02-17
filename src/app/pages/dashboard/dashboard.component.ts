@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onLoad(null);
+    this.onLoadTable(null);
     this.order = "name";
     this.orderDirecation = 'ASC';
   }
@@ -35,15 +35,15 @@ export class DashboardComponent implements OnInit {
     this.productService.getAll(p, order, orderDirecation).subscribe(t => this.searchObject = t);
   }
 
-  onSearch() {
+  onSearch(pageNumber) {
     if(this.search)
-    {this.productService.search(this.search).subscribe(t => this.searchObject = t);}
+    {this.productService.search(this.search , pageNumber).subscribe(t => this.searchObject = t);}
     else{
-      this.onLoad(null);
+      this.onLoadTable(null);
     }
   }
 
-  onLoad(event) {
+  onLoadTable(event) {
     if (this.isloading == true)
       return; 
     //Paging 
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
 
     //Excute Query 
     if (this.search) {
-      this.onSearch();
+      this.onSearch(pageNumber);
     } else {
       this.getAll(pageNumber, this.order, this.orderDirecation);
     }

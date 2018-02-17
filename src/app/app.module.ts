@@ -13,8 +13,10 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataListModule } from 'primeng/components/datalist/datalist'; 
-import { DropdownModule } from 'primeng/components/dropdown/dropdown'; 
-import { HttpClientModule    } from '@angular/common/http'; 
+import { DropdownModule } from 'primeng/components/dropdown/dropdown';  
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+ 
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { HttpClientModule    } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule,  
     LocalStorageModule.withConfig({
-      prefix: 'Ticket-Web',
+      prefix: 'UI-Web',
       storageType: 'localStorage'
     }),
     DataTableModule,
@@ -37,11 +39,14 @@ import { HttpClientModule    } from '@angular/common/http';
     BrowserAnimationsModule,
     DataListModule,
     DropdownModule,
-    routing     
+    routing, 
+    NgProgressModule     
     
   ],
-  providers: [ 
-     ],
+  providers: [
+    // ...
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

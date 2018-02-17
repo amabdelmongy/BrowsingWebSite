@@ -1,33 +1,77 @@
-<div class="main-content">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header" data-background-color="red">
-                  <h4 class="title">Detail</h4> 
-                </div>
-                <div class="card-content">
-    
-                </div>
+<div class="main-content details">
+  <div class="container-fluid">
+    <div class="row" *ngIf="data">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <div>
+              <span class="titleBackground blue" *ngIf="data.isOrganic == 'Y'" title="isOrganic">
+                <i class="material-icons">done</i>
+              </span>
+              <h3 class="title"> 
+                <strong >{{data.name}} </strong>  
+              </h3>
+              <p   *ngIf="data.glass && data.glass.name">
+                <strong>Glass {{data.glass.name }} </strong>
+                {{ data.servingTemperatureDisplay }} </p>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-profile">
-                <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img" src="../assets/img/logo.png" />
-                    </a>
+          </div>
+          <div class="card-content">
+            <div class="padding-15 ui-widget-content ">
+              <div>
+                <h3 class="title">
+                  <strong class="main-subject">{{data.name}} </strong>
+                  <small class="titleBackground blue" *ngIf="data.abv" title="The alcohol by volume of the beer (expressed as a percentage).">
+                    abv {{data.abv}} %
+                  </small>
+                  <small class="titleBackground blue" *ngIf="data.ibu" title="The IBU (international bittering unit) value is a measure of how bitter a beer is. The higher the number, the more bitter the beer.">
+                    ibu {{data.ibu}}
+                  </small>
+                  <div><small class="titleBackground blue" *ngIf="data.available && data.available.description">
+                      {{data.available.description}} </small></div>
+                      <small class="category" *ngIf="data.status ">
+                          <strong>status  {{data.status }} </strong> </small>
+                </h3>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p> {{data.description}}</p>
+                    <p class="category" *ngIf="data.foodPairings">
+                      Food Pairings {{data.foodPairings }} </p>
+                    <p class="category" *ngIf="!data.foodPairings">
+                      Beer Has No Food Pairings Available. </p>
+                  </div>
                 </div>
+                <div class="row " *ngIf="data.style">
+                  <br/>
+                  <div class="col-md-12">
+                    <p>Style {{data.style.name}}</p>
+                    <p> {{data.style.description}}</p>
+                    <p class="category" *ngIf="data.style.category">
+                      category {{data.style.category.name }} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="#pablo">
+              <img class="img" src="../assets/img/logo.png" />
+            </a>
+          </div>
 
-                <div class="content">
-                  <h6 class="category text-gray">Ayuda Media Systems</h6> 
-                    <p class="card-content">
-                      Ayuda is an ad tech company specializing in Out-Of-Home advertising (OOH). The Ayuda Platform is used globally by some of the world’s largest OOH companies to manage day-to-day operations. It includes an end-to-end ERP specially built for OOH, a fully native ad-based digital signage platform, and a rich suite of programmatic offerings that enable OOH media companies to tap into new digital revenue streams and modernize their trading models. Ayuda is a proud member of the DPAA, OAAA, OMA and FEPE    </p>
-                    <a href="https://www.linkedin.com/in/sebastianmach/" class="btn btn-danger btn-round">Follow</a>
-                </div>
+          <div class="content">
+            <div *ngIf="data && data.labels && data.labels.large">
+              <img [src]="data.labels.large" class="rcorners3" style='width:100%;' border="0" alt="Null">
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-</div>
- 
