@@ -1,13 +1,13 @@
-   
+
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { DashboardComponent } from './dashboard/dashboard.component';  
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { PagesComponent } from 'app/pages/pages.component';
-import {DetailComponent} from "./detail/detail.component";
+import { DetailComponent } from "./detail/detail.component";
 import { AboutComponent } from 'app/pages/about/about.component';
 
 export const routes: Routes = [
@@ -18,20 +18,19 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        component: DashboardComponent  
-      }, 
+        component: DashboardComponent
+      },
       {
         path: 'detail/:id',
-        component: DetailComponent  
-      },{
+        component: DetailComponent
+      }, {
         path: 'about',
-        component: AboutComponent  
+        component: AboutComponent
       }
     ]
   }
 ];
- 
+
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
 
- 
- 
+

@@ -12,8 +12,8 @@ declare const $: any;
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css'] 
-}) 
+  styleUrls: ['./pages.component.css']
+})
 export class PagesComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
@@ -24,7 +24,7 @@ export class PagesComponent implements OnInit {
   constructor(public location: Location, private router: Router,
     private localStorageService: LocalStorageService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
 
     $.material.init();
     const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');

@@ -8,10 +8,10 @@
               <span class="titleBackground blue" *ngIf="data.isOrganic == 'Y'" title="isOrganic">
                 <i class="material-icons">done</i>
               </span>
-              <h3 class="title"> 
-                <strong >{{data.name}} </strong>  
+              <h3 class="title">
+                <strong>{{data.name}} </strong>
               </h3>
-              <p   *ngIf="data.glass && data.glass.name">
+              <p *ngIf="data.glass && data.glass.name">
                 <strong>Glass {{data.glass.name }} </strong>
                 {{ data.servingTemperatureDisplay }} </p>
             </div>
@@ -27,10 +27,13 @@
                   <small class="titleBackground blue" *ngIf="data.ibu" title="The IBU (international bittering unit) value is a measure of how bitter a beer is. The higher the number, the more bitter the beer.">
                     ibu {{data.ibu}}
                   </small>
-                  <div><small class="titleBackground blue" *ngIf="data.available && data.available.description">
-                      {{data.available.description}} </small></div>
-                      <small class="category" *ngIf="data.status ">
-                          <strong>status  {{data.status }} </strong> </small>
+                  <div>
+                    <small class="titleBackground blue" *ngIf="data.available && data.available.description">
+                      {{data.available.description}} </small>
+                  </div>
+                  <small class="category" *ngIf="data.status ">
+                    <strong>status {{data.status }} </strong>
+                  </small>
                 </h3>
               </div>
               <div>

@@ -1,8 +1,8 @@
-﻿import { Injectable } from '@angular/core';   
+﻿import { Injectable } from '@angular/core';
 declare var $: any;
 
 @Injectable()
-export class NotificationService  {
+export class NotificationService {
 
   public show(message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
@@ -14,15 +14,12 @@ export class NotificationService  {
       message: message
 
     }, {
-      type: type[color],
-      timer: 4000,
-      placement: {
-        from: 'bottom',
-        align: 'right',
-      }
-    });
-  }
-
-
- 
+        type: type[color],
+        timer: 4000,
+        placement: {
+          from: 'bottom',
+          align: 'right',
+        }
+      });
+  } 
 } 
