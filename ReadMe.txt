@@ -49,3 +49,4 @@ This provides a proxy path to the beer API. More information about that here. Na
 
 ### ToDo  
 - move all URLs to webconfig.json file to enable change all urls in production mode
+- Using offline data at Client-side for querying, caching, model validation, offline like breeze
