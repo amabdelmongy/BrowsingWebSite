@@ -93,8 +93,11 @@
                               <small class="category" *ngIf="product.status ">
                                 <strong> status {{product.status }} </strong>
                               </small>
-                              {{product.description}}</p>
-                            <p class="category" *ngIf="product.foodPairings">
+                              {{product.description}}
+                              <span> 
+                                <a [routerLink]="['/pages/detail/'+product.id]" class="category">More Details</a>
+                              </span></p>
+                                  <p class="category" *ngIf="product.foodPairings">
                               Food Pairings {{product.foodPairings }} </p>
                             <p class="category" *ngIf="!product.foodPairings">
                               Beer Has No Food Pairings Available. </p>
