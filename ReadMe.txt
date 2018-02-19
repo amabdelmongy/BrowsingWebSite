@@ -50,3 +50,6 @@ This provides a proxy path to the beer API. More information about that here. Na
 ### ToDo  
 - move all URLs to webconfig.json file to enable change all urls in production mode
 - Using offline data at Client-side for querying, caching, model validation, offline like breeze
+- added unit test for all project like Jasmine. https://jasmine.github.io/ Jasmine is a behavior-driven
+ development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks.
+  It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests.
